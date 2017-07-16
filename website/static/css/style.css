@@ -1,3 +1,5 @@
+.amcharts-chart-div a {display:none !important;}
+
 body {
 	font-family: Tahoma,Arial,Verdana;
 	font-size: 12px;

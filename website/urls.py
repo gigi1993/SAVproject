@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^participate$', views.participate, name='participate'),
     url(r'^overview$', views.overview, name='overview'),
     url(r'^myfirstout$', views.myfirstout, name='myfirstout'),
+    url(r'^line$', views.line, name='line'),
 ]

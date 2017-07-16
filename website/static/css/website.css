@@ -23,6 +23,8 @@ h1, h2, h3, h4 {
     display:block;
     clear:both;
 }
+
+.amcharts-chart-div a {display:none !important;}
  
 /*----- Menu Outline -----*/
 .menu-wrap {
@@ -110,8 +112,7 @@ h1, h2, h3, h4 {
 
 #external {
   position: relative;
-  height: 200px;
-  border: 3px solid #73AD21;
+  height: 50px;
 
   top:-60px; 
   margin : 67px;
@@ -133,10 +134,12 @@ h1, h2, h3, h4 {
 }
 #descriptionB {
   position: absolute;
-  top:-60px; 
-  left: 90px;
+  top:-70px; 
+  height: 200px;
+  left: 100px;
   margin : 67px;
   padding: 10px;
+
 
 }
 
