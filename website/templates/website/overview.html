@@ -1,0 +1,126 @@
+{% load staticfiles %}
+<html>
+    <head>
+
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>SAV project</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/website.css' %}">
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">  
+        <link rel="stylesheet" href="{% static 'ammap/ammap.css' %}" type="text/css">
+        <script src="{% static 'ammap/ammap.js' %}" type="text/javascript"></script>
+        <!-- map file should be included after ammap.js -->
+        <script src="{% static 'ammap/maps/js/worldLow.js' %}" type="text/javascript"></script>
+        <script src="{% static 'ammap/themes/light.js' %}" type="text/javascript"></script>
+
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+        <script src="{% static 'amcharts/amcharts.js' %}" type="text/javascript"></script>
+        <script src="{% static 'amcharts/pie.js' %}" type="text/javascript"></script>
+
+
+
+        <script>
+            var dataToMap = [9, 5];
+            AmCharts.theme = AmCharts.themes.light;
+            var map;
+            AmCharts.ready(function() {
+                map = new AmCharts.AmMap();
+                map.colorSteps = 5;
+                var dataProvider = {
+                        mapVar: AmCharts.maps.worldLow, 
+                        "areas": [
+                            {
+                            id: "ES",
+                            value: dataToMap[0],
+                            "title": "Spain",
+                            "description": dataToMap[0] + " measurements. <br> SPAIN <br>\n SPAIN SPAIN.",
+                            },
+                            {
+                                id: "FR",
+                                value: dataToMap[1],
+                                "title": "France",
+                                "description": dataToMap[1] + " measurements. FRANCE"}                
+                        ],
+                };
+                map.areasSettings = {
+                    autoZoom: true,
+                    descriptionWindowTop: 140,
+                    descriptionWindowLeft: 9,
+                    descriptionWindowWidth: 200,
+                };
+                map.projection = "eckert5";
+                map.borderColor = "#262626";
+                map.listeners = [ {
+                            "event": "clickMapObject",
+                            "method": function( event ) {  
+                              document.getElementById("descriptionB").innerHTML = '<iframe src="http://127.0.0.1:8000/myfirstout" style="border:none;"</iframe>';
+                              document.getElementById("descriptionA").innerHTML = '<iframe src="http://127.0.0.1:8000/myfirstout" style="border:none;"</iframe>';
+                            }
+
+
+                        }  ],
+                map.dataProvider = dataProvider;
+                var valueLegend = new AmCharts.ValueLegend();
+                valueLegend.bottom = 10;
+                valueLegend.right = 10;
+                valueLegend.minValue = "No Measurement";
+                valueLegend.maxValue = "Max";
+                map.valueLegend = valueLegend;
+                map.write("mapdiv"); 
+            });
+    </script>
+
+    </head>
+    <body>
+        <div class = "header">
+            <h1>BCP38 Compliance Dashboard</h1>
+        </div>
+        <!-- NAVIGATION BAR -->
+        <div class="menu-wrap">
+            <nav class="menu">
+                <ul class="clearfix">
+                    <li><a href="http://127.0.0.1:8000/myfirstout">myfirstout</a></li>
+                    <li><a href="http://127.0.0.1:8000/">Home</a></li>
+                    <li><a href="http://127.0.0.1:8000/participate">Participate!</a></li>
+                    <li class="current-item"><a href="http://127.0.0.1:8000/overview">Overview</a></li>
+                    <li>
+                        <a href="#">Results <span class="arrow">&#9660;</span></a>
+                        <ul class="sub-menu">
+                            <li><a href="#">CountryA</a></li>
+                            <li><a href="#">CountryB</a></li>
+                            <li><a href="#">CountryC</a></li>
+                            <li><a href="#">CountryD</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- CONTENT -->
+        <div class = "content">
+            <h1>Global View of BCP38 Compliance</h1>
+            <br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sodales, elit eget varius vulputate, turpis augue condimentum dui, sed euismod nulla nisl ut metus. Maecenas eu magna blandit, pharetra justo ut, auctor velit. In hac habitasse platea dictumst. Nulla odio leo, tincidunt ac nunc et, tempor lobortis nulla. Nunc erat sapien, dapibus eget magna ultrices, luctus congue leo. Nullam euismod fermentum tempus. Aenean nec tellus est. Donec mattis dolor eget ligula dignissim, sit amet fermentum mauris porttitor. Vestibulum mi mi, viverra id venenatis posuere, suscipit sit amet sapien. Suspendisse rutrum mauris velit, blandit aliquet ipsum dictum vulputate.</p>
+        </div>
+        <div id="mapdiv" style="margin:50pt; height: 300px; background-color:#e5f1fc;"></div>
+        <div id=external>
+            <div id="descriptionA">
+                <p>Click on any highlighted country to display information</p>
+            </div>
+            <div id="descriptionB">
+            </div>
+        </div>
+
+
+        <div id="mydiv" class = "content">
+            <h1>What Does This Mean?</h1>
+            <br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sodales, elit eget varius vulputate, turpis augue condimentum dui, sed euismod nulla nisl ut metus. Maecenas eu magna blandit, pharetra justo ut, auctor velit. In hac habitasse platea dictumst. Nulla odio leo, tincidunt ac nunc et, tempor lobortis nulla. Nunc erat sapien, dapibus eget magna ultrices, luctus congue leo. Nullam euismod fermentum tempus. Aenean nec tellus est. Donec mattis dolor eget ligula dignissim, sit amet fermentum mauris porttitor. Vestibulum mi mi, viverra id venenatis posuere, suscipit sit amet sapien. Suspendisse rutrum mauris velit, blandit aliquet ipsum dictum vulputate.</p>
+        </div>
+
+
+    </body>
+</html>

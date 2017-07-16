@@ -1,0 +1,43 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>SAV project</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/website.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">        
+    </head>
+    <body>
+        <div class = "header">
+            <h1>BCP38 Compliance Dashboard</h1>
+        </div>
+        <!-- NAVIGATION BAR -->
+        <div class="menu-wrap">
+            <nav class="menu">
+                <ul class="clearfix">
+                    <li><a href="http://127.0.0.1:8000/">Home</a></li>
+                    <li class="current-item"><a href="http://127.0.0.1:8000/participate">Participate!</a></li>
+                    <li><a href="http://127.0.0.1:8000/overview">Overview</a></li>
+                    <li>
+                        <a href="#">Results <span class="arrow">&#9660;</span></a>
+                        <ul class="sub-menu">
+                            <li><a href="#">CountryA</a></li>
+                            <li><a href="#">CountryB</a></li>
+                            <li><a href="#">CountryC</a></li>
+                            <li><a href="#">CountryD</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- CONTENT -->
+        <div class = "content">
+            <h1>Participate to the Project</h1>
+            <br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sodales, elit eget varius vulputate, turpis augue condimentum dui, sed euismod nulla nisl ut metus. Maecenas eu magna blandit, pharetra justo ut, auctor velit. In hac habitasse platea dictumst. Nulla odio leo, tincidunt ac nunc et, tempor lobortis nulla. Nunc erat sapien, dapibus eget magna ultrices, luctus congue leo. Nullam euismod fermentum tempus. Aenean nec tellus est. Donec mattis dolor eget ligula dignissim, sit amet fermentum mauris porttitor. Vestibulum mi mi, viverra id venenatis posuere, suscipit sit amet sapien. Suspendisse rutrum mauris velit, blandit aliquet ipsum dictum vulputate.</p>
+            <h3>Download the measurement application!</h3>
+            <p>Duis rutrum sapien at velit sagittis pretium. Pellentesque et elit elit. Aliquam non lorem in nunc facilisis malesuada. Ut varius, lorem ultricies gravida bibendum, neque tellus dapibus nunc, id sagittis mi ipsum eget leo. Donec vitae justo accumsan, congue velit et, gravida nunc. Curabitur venenatis eleifend risus, sed consequat sapien feugiat vitae.</p>
+        </div>        
+    </body>
+</html>
