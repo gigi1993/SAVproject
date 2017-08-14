@@ -19,6 +19,7 @@ h1, h2, h3, h4 {
     text-align: justify;
     font-family: 'Open Sans', sans-serif;
     font-size:14px;
+
 }
 .content a{
     color: #000000;
@@ -45,7 +46,7 @@ h1, h2, h3, h4 {
 .menu li {
     margin:0px;
     list-style:none;
-    font-family:'Open Sans', sans-serif;
+    font-family:'Open Sans';
 }
  
 .menu a {
@@ -117,7 +118,8 @@ h1, h2, h3, h4 {
 
 #external {
   position: relative;
-  margin-left: 15px;
+  top:-60px; 
+  margin-left: 50px;
 }
 
 
@@ -128,3 +130,44 @@ h1, h2, h3, h4 {
 }
 
 
+#descriptionA p {
+  margin: 5px;
+}
+
+
+
+#chartdiv {
+  width: 900px;
+  max-width: 100%;
+  height: 300px;
+  border: 2px solid #eee;
+  border-bottom: none;
+}
+
+#chartdata {
+  width: 900px;
+  max-width: 100%;
+  border: 2px solid #eee;
+}
+
+#chartdata table {
+  width: 100%;
+}
+
+#chartdata table th, #chartdata table td {
+  text-align: center;
+  padding: 5px 7px;
+}
+
+#chartdata table th {
+  background: #999;
+  color: #fff;
+}
+
+#chartdata table td {
+  border-bottom: 1px solid #eee;
+}
+
+#chartdata table td.row-title {
+  font-weight: bold;
+}

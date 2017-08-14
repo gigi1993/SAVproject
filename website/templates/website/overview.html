@@ -4,7 +4,7 @@
 
 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>SAV project</title>
+        <title>InfoSpoofing</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'css/website.css' %}">
@@ -19,107 +19,334 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
         <script src="{% static 'amcharts/amcharts.js' %}" type="text/javascript"></script>
         <script src="{% static 'amcharts/pie.js' %}" type="text/javascript"></script>
+        <script src="{% static 'amcharts/radar.js' %}" type="text/javascript"></script>
+        <script src="{% static 'amcharts/serial.js' %}" type="text/javascript"></script>
 
+        <script src="{% static 'amcharts/plugins/dataloader/dataloader.min.js' %}" type="text/javascript"></script>
 
-
+<!-- MAP SCRIPT -->
         <script>
-            var dataToMap = [9, 5];
+            var dataToMap = [2];
+            dataToMap[0]=100;
+            dataToMap[1]=200;
             AmCharts.theme = AmCharts.themes.light;
             var map;
             AmCharts.ready(function() {
                 map = new AmCharts.AmMap();
-                map.colorSteps = 5;
+                map.colorSteps = 0;
                 var dataProvider = {
                         mapVar: AmCharts.maps.worldLow, 
                         "areas": [
                             {
-                            id: "ES",
-                            value: dataToMap[0],
-                            "title": "Spain",
-                            "description": dataToMap[0] + " measurements. <br> SPAIN <br>\n SPAIN SPAIN.",
+                            id: "GB",
+                            value: 7024,
+                            color: "#00570B",
+
+                            "title": "United Kingdom",
+                            "description": "17/136 Teasted ASes are spoofable:<br>43754 (ASIATECH)<br>41495 (FAELIX-AS)<br>8916 (PORTFAST)<br>15395<br>20860 (IOMART-AS)<br>202939 (b5dc)<br>35028 (MULTIPLAY)<br>786 (JANET)<br>8435<br>42004 (ULGRP-AS)<br>8468 (ENTANET)<br>8676 (PRTSYSTEMS)<br>31712 (GIGASTREAM-AS)<br>50056 (AI-NET)<br>13213 (UK2NET-AS)<br>61049 (AS-EXASCALE)<br>58188 (SHARPSTEAM)<br>",
                             },
                             {
-                                id: "FR",
-                                value: dataToMap[1],
-                                "title": "France",
-                                "description": dataToMap[1] + " measurements. FRANCE"}                
+                                id: "NL",
+                                value: 3652,
+                                color: "#00570B",
+                                "title": "The Netherlands",
+                                "description": "18/132 ASes are spoofable:<br>29073 (QUASINETWORKS)<br>16281 (UTELISYS)<br>43090<br>206360<br>49544 (INTERACTIVE3D)<br>11232 (MIDCO-NET)<br>8283 (COLOCLUE-AS)<br>4608 (APNIC-SERVICES)<br>49981 (WorldStream)<br>60144 (THREE-W-INFRA-AS)<br>43350 (NFORCE)<br>200837 (PCEXTREME-UK)<br>48635 (PCEXTREME)<br>59743 (EliteHosting)<br>57062 (SERVERCLUB-AS)<br>31216 (BSOCOM)<br>60144 (THREE-W-INFRA-AS)<br>47869 (NETROUTING-AS)<br>"},
+                            {
+                                id: "DE",
+                                color: "#00570B",
+                                value: 5143,
+                                "title": "Germany",
+                                "description": "12/105 ASes are spoofable:<br><br>Preview not available"},
+                                {
+                                id: "IN",
+                                color: "#00570B",
+                                value: 4727,
+                                "title": "India",
+                                "description": "13/113 ASes are spoofable<br><br>Preview not available"},
+                                {
+                                id: "CA",
+                                value: 4470,
+                                color: "#00570B",
+                                "title": "Canada",
+                                "description": "25/115 ASes are spoofable:<br><br>Preview not available"},               
+                                {
+                                id: "AU",
+                                value: 3691,
+                                color: "#00570B",
+                                "title": "Australia",
+                                "description": "14/94 ASes are spoofable:<br><br>Preview not available"}             
                         ],
                 };
                 map.areasSettings = {
                     autoZoom: true,
-                    descriptionWindowTop: 140,
-                    descriptionWindowLeft: 9,
-                    descriptionWindowWidth: 200,
+                    descriptionWindowTop: 10,
+                    descriptionWindowRight: 10,
+                    rollOverColor:"#2EA93D",
                 };
                 map.projection = "eckert5";
-                map.borderColor = "#262626";
                 map.listeners = [ {
                             "event": "clickMapObject",
-                            "method": function( event ) {  
-                              document.getElementById("descriptionA").innerHTML = '<iframe src="http://gg93.pythonanywhere.com/myfirstout" style="border:none;"</iframe>';
-                              document.getElementById("descriptionB").innerHTML = '<iframe src="http://gg93.pythonanywhere.com/line" style="border:none;height: 200px;"</iframe>';
+                            "method": function( event ) {
+                                
+                                if (event.mapObject.title=="United Kingdom")
+                                {
+                              document.getElementById("descriptionA").innerHTML = '<iframe src="http://gg93.pythonanywhere.com/previewUK" style="border:solid 2px; border-color: #00570B; border-radius: 10px; "</iframe>';
+                              document.getElementById("descriptionB").innerHTML = '<a style="color: #159124; margin-left:310px;" href="http://gg93.pythonanywhere.com/UK"">Visit UK page</a>';
+                                } 
+
+                                else if (event.mapObject.title=="The Netherlands")
+                                {
+                             document.getElementById("descriptionA").innerHTML = '<iframe src="http://gg93.pythonanywhere.com/previewNL" style="border:solid 2px; border-color: #00570B; border-radius: 10px; "</iframe>';
+                              document.getElementById("descriptionB").innerHTML = '<a style="color: #159124; margin-left:310px;" href="#">Visit NL page</a>';
+
+                                } 
                             }
 
 
                         }  ],
                 map.dataProvider = dataProvider;
-                var valueLegend = new AmCharts.ValueLegend();
-                valueLegend.bottom = 10;
-                valueLegend.right = 10;
-                valueLegend.minValue = "No Measurement";
-                valueLegend.maxValue = "Max";
-                map.valueLegend = valueLegend;
+                map.mouseWheelZoomEnabled= true;
+                map.backgroundZoomsToTop= false;
+                
                 map.write("mapdiv"); 
             });
-    </script>
+        </script>
+<!-- RADAR SCRIPT -->
+        <script>
+            var chart;
 
+            AmCharts.ready(function () {
+                // RADAR CHART
+                chart = new AmCharts.AmRadarChart();
+                //  chart.dataProvider = chartDataA;
+                chart.dataLoader = {
+                        url: "{% static 'csv/radar.csv' %}",
+                        format: "csv",
+                        delimiter: ",",
+                        useColumnNames: true,
+                    };
+
+                chart.categoryField = "country";
+                chart.startDuration = 0;
+
+                // VALUE AXIS
+                var valueAxisA = new AmCharts.ValueAxis();
+                valueAxisA.id="v1";
+                valueAxisA.axisAlpha = 0.15;
+                valueAxisA.gridCount = 4;
+                valueAxisA.maximum = 8000;
+                valueAxisA.minimum = 0;
+                valueAxisA.dashLengt = 10;
+                valueAxisA.axisTitleOffset = 10;
+                chart.addValueAxis(valueAxisA);
+
+                var valueAxisB = new AmCharts.ValueAxis();
+                valueAxisB.id="v2";
+
+                valueAxisB.axisAlpha = 0;
+                valueAxisB.minimum = 0;
+                valueAxisB.gridCount = 2;
+                valueAxisB.maximum = 300;
+                valueAxisB.inside = true;
+                valueAxisB.dashLength = 0;
+                chart.addValueAxis(valueAxisB);              
+
+                // GRAPH
+                var graphA = new AmCharts.AmGraph();
+                graphA.valueField = "TotalTest";
+                graphA.bullet = "round";
+                graphA.balloonText = "[[value]] tests received";
+                graphA.valueAxis = "v1";
+                graphA.lineColor = "#07374F";
+                chart.addGraph(graphA);
+
+                var graphB = new AmCharts.AmGraph();
+                graphB.valueField = "TotalAS";
+                graphB.bullet = "square";
+                graphB.balloonText = "[[value]] ASes tested";
+                graphB.lineColor = "#159124";
+                graphB.valueAxis = "v2";
+                chart.addGraph(graphB);
+
+                chart.marginTop = 10;
+                chart.marginBottom = -20;
+                chart.marginLeft = -20;
+                chart.marginRight = -20;
+
+
+
+
+                // WRITE
+                chart.write("radar");
+            });
+        </script>
+<!-- CULUMN SCRIPT -->
+        <script>
+        /* porcoddio sbarella con i nomi dei paesi */
+        var chart;var chartData = [
+                {
+                    "Country": "UK",
+                    "CompliantAS": 115,
+                    "VulnerableAS": 15
+                },
+                {
+                    "Country": "NL",
+                    "CompliantAS": 102,
+                    "VulnerableAS": 23
+                },
+                {
+                   "Country": "IN",
+                    "CompliantAS": 100,
+                    "VulnerableAS": 13
+                },
+                {
+                    "Country": "AU",
+                    "CompliantAS": 70,
+                    "VulnerableAS": 14
+                },
+                {
+                    "Country": "CA",
+                    "CompliantAS": 90,
+                    "VulnerableAS": 25
+                },
+                {
+                    "Country": "DE",
+                    "CompliantAS": 90,
+                    "VulnerableAS": 15
+                }                
+            ]; 
+            
+
+            AmCharts.ready(function () {
+                // SERIAL CHART
+                chart = new AmCharts.AmSerialChart();
+                chart.dataProvider = chartData;
+                /*
+                chart.dataLoader = {
+                        url: "{% static 'csv/column.csv' %}",
+                        format: "csv",
+                        delimiter: ",",
+                        useColumnNames: true,
+                        };
+                */
+                chart.categoryField = "Country";
+                chart.startDuration = 1;
+                chart.plotAreaBorderColor = "#DADADA";
+                chart.plotAreaBorderAlpha = 1;
+                // this single line makes the chart a bar chart
+                chart.rotate = true;
+
+                // AXES
+                // Category
+                var categoryAxis = chart.categoryAxis;
+                categoryAxis.gridPosition = "start";
+                categoryAxis.gridAlpha = 0.1;
+                categoryAxis.axisAlpha = 0;
+
+                // Value
+                var valueAxis = new AmCharts.ValueAxis();
+                valueAxis.axisAlpha = 0;
+                valueAxis.gridAlpha = 0.1;
+                valueAxis.position = "top";
+                chart.addValueAxis(valueAxis);
+
+                // GRAPHS
+                // first graph
+                var graph1 = new AmCharts.AmGraph();
+                graph1.type = "column";
+                graph1.title = "Compliant";
+                graph1.valueField = "CompliantAS";
+                graph1.balloonText = "Compliant ASes:[[value]]";
+                graph1.lineAlpha = 0;
+                graph1.fillColors = "#51BE5E";
+                graph1.fillAlphas = 1;
+                chart.addGraph(graph1);
+
+                // second graph
+                var graph2 = new AmCharts.AmGraph();
+                graph2.type = "column";
+                graph2.title = "Spoofable";
+                graph2.valueField = "VulnerableAS";
+                graph2.balloonText = "Spoofable ASes:[[value]]";
+                graph2.lineAlpha = 0;
+                graph2.fillColors = "#057713";
+                graph2.fillAlphas = 1;
+                chart.addGraph(graph2);
+
+                // LEGEND
+                var legend = new AmCharts.AmLegend();
+                chart.addLegend(legend);
+
+                chart.marginRight = 40;
+
+
+                // WRITE
+                chart.write("columnchart");
+            });
+        </script>
     </head>
     <body>
         <div class = "header">
-            <h1>BCP38 Compliance Dashboard</h1>
+            <h1>InfoSpoofing</h1>
         </div>
         <!-- NAVIGATION BAR -->
         <div class="menu-wrap">
             <nav class="menu">
                 <ul class="clearfix">
-                    <li><a href="http://127.0.0.1:8000/">Home</a></li>
-                    <li><a href="http://127.0.0.1:8000/participate">Participate!</a></li>
-                    <li class="current-item"><a href="http://127.0.0.1:8000/overview">Overview</a></li>
-                    <li>
-                        <a href="#">Results <span class="arrow">&#9660;</span></a>
+                    <!--<li><a href="http://127.0.0.1:8000/">Home</a></li>
+                    <li><a href="http://127.0.0.1:8000/participate">Participate</a></li>-->
+                    <li class="current-item">
+                        <a href="http://gg93.pythonanywhere.com/">Overview <span class="arrow">&#9660;</span></a>
                         <ul class="sub-menu">
-                            <li><a href="http://gg93.pythonanywhere.com/myfirstout">CountryA</a></li>
-                            <li><a href="http://gg93.pythonanywhere.com/line">CountryB</a></li>
-                            <li><a href="#">CountryC</a></li>
-                            <li><a href="#">CountryD</a></li>
+                            <li><a href="http://gg93.pythonanywhere.com/UK">UK</a></li>
+                            <li><a href="#">Country2</a></li>
+                            <li><a href="#">Country3</a></li>
+                            <li><a href="#">Country4</a></li>
+                            <li><a href="#">Country5</a></li>
+                            <li><a href="#">Country6</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">About</a></li>
+                    <li "><a href="http://gg93.pythonanywhere.com/about">About us</a></li>
                 </ul>
             </nav>
         </div>
+
         <!-- CONTENT -->
-        <div class = "content">
-            <h1>Global View of BCP38 Compliance</h1>
+        <div class="content">
+            <h1 align="center" style="margin-top: -15px;">Results overview</h1>
             <br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sodales, elit eget varius vulputate, turpis augue condimentum dui, sed euismod nulla nisl ut metus. Maecenas eu magna blandit, pharetra justo ut, auctor velit. In hac habitasse platea dictumst. Nulla odio leo, tincidunt ac nunc et, tempor lobortis nulla. Nunc erat sapien, dapibus eget magna ultrices, luctus congue leo. Nullam euismod fermentum tempus. Aenean nec tellus est. Donec mattis dolor eget ligula dignissim, sit amet fermentum mauris porttitor. Vestibulum mi mi, viverra id venenatis posuere, suscipit sit amet sapien. Suspendisse rutrum mauris velit, blandit aliquet ipsum dictum vulputate.</p>
-        </div>
-        <div id="mapdiv" style="margin:50pt; height: 300px; background-color:#e5f1fc;"></div>
-        <div id=external>
-            <div id="descriptionA">
-                <p>Click on any highlighted country to display information</p>
+            <p>This page provides an overview of the measurement of BCP38 compliance in six countries, namely UK, NL, DE, AU, IN, CA. For more information, click on the map below and visit the national page of each contry!</p>
+            <p style="color: red;">NOTE: map data retrived on the paper from Luckie and Claffy, details on the names of the vulnerable system from <a style="color: 159124;" href="https://spoofer.caida.org/country_stats.php">CAIDA's results</a>. There might be imprecisions and errors that I will fix as soon as we decide which country to consider for the experiment</p>
+            
+            <div id="mapdiv" style=" height: 350px; background-color:#f2f3f4; border:solid 2px; border-color: #00570B; border-radius: 10px; margin-top:30px;"></div>
+        
+            <div id=external>
+                <div id="descriptionA"></div>
+                <div id="descriptionB">
+                    <p align="center">Click on the map for details.</p>
+                </div>
             </div>
-            <div id="descriptionB">
+        </div>
+        <div id="mydiv" class = "content" style="margin-top: -70px;">
+            <div id="radar" style=" width:50%; height:50%; float: left; margin-top: 20px; ">
+            </div>
+            <div id="sx" style="margin-left: 0px;">
+                <br>
+                <h3>Test Distribution & Tested ASes</h3>
+                <p>This graphs shows the distribution of tests in the United Kingdom, the Netherlands, India, Australia, Canada and Germany. It includes both the total number of tests received (blue line) and the amount of Autonomous Systems covered (green line). </p>
+                <p>The highest number of tests has been collected in the UK (7024 tests) and Germany (5143 tets), followed by India and Canada with more the 4000 tests. In the Netherlands and Australia we collected around 3600 tests.</p>
+                <p>In United Kingdom and in the Netherlands we cover more then 130 Autonomous Systems. For the other countries, this number varies between the 94 ASes tested in Australia and the 115 in Canada</p>
             </div>
         </div>
 
-
-        <div id="mydiv" class = "content">
-            <h1>What Does This Mean?</h1>
-            <br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sodales, elit eget varius vulputate, turpis augue condimentum dui, sed euismod nulla nisl ut metus. Maecenas eu magna blandit, pharetra justo ut, auctor velit. In hac habitasse platea dictumst. Nulla odio leo, tincidunt ac nunc et, tempor lobortis nulla. Nunc erat sapien, dapibus eget magna ultrices, luctus congue leo. Nullam euismod fermentum tempus. Aenean nec tellus est. Donec mattis dolor eget ligula dignissim, sit amet fermentum mauris porttitor. Vestibulum mi mi, viverra id venenatis posuere, suscipit sit amet sapien. Suspendisse rutrum mauris velit, blandit aliquet ipsum dictum vulputate.</p>
+        <div id="mydiv2" class = "content">
+            <div id="columnchart" style="width:50%; height:50%; float: left; margin-top: 20px; "></div>
+            <div id="sx" style="margin-left: 0px;">
+                <h3>Compliant vs Spoofable ASes</h3>
+                <p>This chart shows, for each country, the amount of ASes compliant with BCP38 (light green) and the number ASes vulnerable to IP spoofing (dark green).</p>
+                <p>We identify a pick of 25 and 23 vulnerable Autonomous Systems respectively in Canada and the Netherlands. For the other countries, this number is around 15.</p>
+                <p>As for the number of ASes compliant with BCP38, we find more then 100 in the UK, the Netherlands and India. Then, we identified 90 compliant ASes in Canada and Germany, while in Australia we measured 70.</p>
+            </div>
         </div>
-
-
     </body>
 </html>
