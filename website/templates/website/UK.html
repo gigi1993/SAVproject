@@ -65,7 +65,7 @@
 
             /**
              * Define chart data
-             */
+             
             var chartData = [{
               "name": "43754 ASIATECH",
               "year": 43754,
@@ -168,11 +168,17 @@
               "spoof": 1,
               "nat": 0,
               "bcp": 0
-            }];
+            }];*/
 
             var chart = AmCharts.makeChart("chartdiv", {
               "type": "serial",
-              "dataProvider": chartData,
+              //"dataProvider": chartData,
+              chart.dataLoader = {
+                        url: "{% static 'csv/UK.csv' %}",
+                        format: "csv",
+                        delimiter: ",",
+                        useColumnNames: true,
+                        };
               "dataTableId": "chartdata",
               "categoryField": "name",
 
@@ -195,14 +201,14 @@
                 "balloonText": "[[value]] spoofing",
                 "lineAlpha": 0,
                 "fillAlphas": 0.6
-              }, {
+              }, /*{
                 "type": "column",
                 "title": "NAT",
                 "valueField": "nat",
                 "balloonText": "[[value]] NAT",
                 "lineAlpha": 0,
                 "fillAlphas": 0.6
-              }, {
+              }, */{
                 "type": "column",
                 "title": "Non Spoofing",
                 "valueField": "bcp",
