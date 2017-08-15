@@ -90,14 +90,22 @@
                                 
                                 if (event.mapObject.title=="United Kingdom")
                                 {
-                              document.getElementById("descriptionA").innerHTML = '<iframe src="http://gg93.pythonanywhere.com/previewUK" style="border:solid 2px; border-color: #00570B; border-radius: 10px; "</iframe>';
-                              document.getElementById("descriptionB").innerHTML = '<a style="color: #159124; margin-left:310px;" href="http://gg93.pythonanywhere.com/UK"">Visit UK page</a>';
+                                document.getElementById("descriptionA").innerHTML = '<iframe src="http://gg93.pythonanywhere.com/previewUK" style="border:solid 2px; border-color: #00570B; border-radius: 10px; "</iframe>';
+                                document.getElementById("descriptionB").innerHTML = '<a style="color: #159124; margin-left:310px;" href="http://gg93.pythonanywhere.com/UK"">Visit UK page</a>';
+
+                            /*  document.getElementById("descriptionA").innerHTML = '<iframe src="http://127.0.0.1:8000/previewUK" style="border:solid 2px; border-color: #00570B; border-radius: 10px; "</iframe>';
+                                document.getElementById("descriptionB").innerHTML = '<a style="color: #159124; margin-left:310px;" href="http://127.0.0.1:8000/UK"">Visit UK page</a>';
+                            */    
                                 } 
 
                                 else if (event.mapObject.title=="The Netherlands")
                                 {
                              document.getElementById("descriptionA").innerHTML = '<iframe src="http://gg93.pythonanywhere.com/previewNL" style="border:solid 2px; border-color: #00570B; border-radius: 10px; "</iframe>';
                               document.getElementById("descriptionB").innerHTML = '<a style="color: #159124; margin-left:310px;" href="#">Visit NL page</a>';
+                              /*
+                              document.getElementById("descriptionA").innerHTML = '<iframe src="http://127.0.0.1:8000/previewNL" style="border:solid 2px; border-color: #00570B; border-radius: 10px; "</iframe>';
+                              document.getElementById("descriptionB").innerHTML = '<a style="color: #159124; margin-left:310px;" href="#">Visit NL page</a>';
+                              */
 
                                 } 
                             }
@@ -277,9 +285,6 @@
                 var legend = new AmCharts.AmLegend();
                 chart.addLegend(legend);
 
-                chart.marginRight = 40;
-
-
                 // WRITE
                 chart.write("columnchart");
             });
@@ -292,9 +297,24 @@
         <!-- NAVIGATION BAR -->
         <div class="menu-wrap">
             <nav class="menu">
+            <!--
                 <ul class="clearfix">
-                    <!--<li><a href="http://127.0.0.1:8000/">Home</a></li>
-                    <li><a href="http://127.0.0.1:8000/participate">Participate</a></li>-->
+                    <li class="current-item">
+                        <a href="http://127.0.0.1:8000/">Overview <span class="arrow">&#9660;</span></a>
+                        <ul class="sub-menu">
+                            <li><a href="http://127.0.0.1:8000/UK">UK</a></li>
+                            <li><a href="#">Country2</a></li>
+                            <li><a href="#">Country3</a></li>
+                            <li><a href="#">Country4</a></li>
+                            <li><a href="#">Country5</a></li>
+                            <li><a href="#">Country6</a></li>
+                        </ul>
+                    </li>
+                    <li "><a href="http://127.0.0.1:8000/about">About us</a></li>
+                </ul>
+            </nav>
+            -->
+            <ul class="clearfix">
                     <li class="current-item">
                         <a href="http://gg93.pythonanywhere.com/">Overview <span class="arrow">&#9660;</span></a>
                         <ul class="sub-menu">
@@ -332,22 +352,24 @@
             </div>
             <div id="sx" style="margin-left: 0px;">
                 <br>
+                <br>
                 <h3>Test Distribution & Tested ASes</h3>
                 <p>This graphs shows the distribution of tests in the United Kingdom, the Netherlands, India, Australia, Canada and Germany. It includes both the total number of tests received (blue line) and the amount of Autonomous Systems covered (green line). </p>
                 <p>The highest number of tests has been collected in the UK (7024 tests) and Germany (5143 tets), followed by India and Canada with more the 4000 tests. In the Netherlands and Australia we collected around 3600 tests.</p>
                 <p>In United Kingdom and in the Netherlands we cover more then 130 Autonomous Systems. For the other countries, this number varies between the 94 ASes tested in Australia and the 115 in Canada</p>
             </div>
         </div>
-
-        <div id="mydiv" class = "content">
-            <div id="columnchart" style="width:50%; height:50%; float: left; margin-top: 20px; "></div>
+        
+        <div id="mydiv" class = "content" style="margin-top: -30px;">
+            <div id="columnchart" style=" width:50%; height:50%; float: right; margin-top: 40px; "></div>
             <div id="sx" style="margin-left: 0px;">
-                <br>
-                <h3>Compliant vs Spoofable ASes</h3>
-                <p>This chart shows, for each country, the amount of ASes compliant with BCP38 (light green) and the number ASes vulnerable to IP spoofing (dark green).</p>
-                <p>We identify a pick of 25 and 23 vulnerable Autonomous Systems respectively in Canada and the Netherlands. For the other countries, this number is around 15.</p>
-                <p>As for the number of ASes compliant with BCP38, we find more then 100 in the UK, the Netherlands and India. Then, we identified 90 compliant ASes in Canada and Germany, while in Australia we measured 70.</p>
+            <br>
+                    <h3>Compliant vs Spoofable ASes</h3>
+                    <p>This chart shows, for each country, the amount of ASes compliant with BCP38 (light green) and the number ASes vulnerable to IP spoofing (dark green).</p>
+                    <p>We identify a pick of 25 and 23 vulnerable Autonomous Systems respectively in Canada and the Netherlands. For the other countries, this number is around 15.</p>
+                    <p>As for the number of ASes compliant with BCP38, we find more then 100 in the UK, the Netherlands and India. Then, we identified 90 compliant ASes in Canada and Germany, while in Australia we measured 70.</p>
             </div>
         </div>
+
     </body>
 </html>
