@@ -37,12 +37,12 @@
                 map = new AmCharts.AmMap();
                 map.colorSteps = 0;
                 
-                //load data map
+                //load data map ONLY JSON WORKS
                 map.dataLoader = {
                         url: "{% static 'csv/map.json' %}",
-                        format: "json",
-                        //delimiter: ",",
-                        //useColumnNames: true,
+                       // format: "csv",
+                       // delimiter: ",",
+                       // useColumnNames: true,
                 };
                 
                 map.areasSettings = {
@@ -68,7 +68,7 @@
                                 document.getElementById("descriptionB").innerHTML = '<a style="color: #159124; margin-left:310px;" href="http://127.0.0.1:8000/UK"">Visit UK page</a>';
 
                                 $(function() {
-								$("#descriptionC").load("{%static 'columnSimple.html' %}"); 
+								$("#descriptionC").load("{%static 'barchart.html' %}"); 
 									});
                                 //document.getElementById("descriptionC").innerHTML =''  ;
                                
