@@ -1,16 +1,18 @@
 {% load staticfiles %}
 <html>
     <head>
-
-
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>InfoSpoofing</title>
+        
+        <!-- links and scripts for the graphs -->
+
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'css/website.css' %}">
 
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">  
         <link rel="stylesheet" href="{% static 'ammap/ammap.css' %}" type="text/css">
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script> 
         <script src="{% static 'ammap/ammap.js' %}" type="text/javascript"></script>
         <!-- map file should be included after ammap.js -->
         <script src="{% static 'ammap/maps/js/worldLow.js' %}" type="text/javascript"></script>
@@ -24,59 +26,25 @@
 
         <script src="{% static 'amcharts/plugins/dataloader/dataloader.min.js' %}" type="text/javascript"></script>
 
+
+
+
 <!-- MAP SCRIPT -->
         <script>
-            var dataToMap = [2];
-            dataToMap[0]=100;
-            dataToMap[1]=200;
             AmCharts.theme = AmCharts.themes.light;
             var map;
             AmCharts.ready(function() {
                 map = new AmCharts.AmMap();
                 map.colorSteps = 0;
-                var dataProvider = {
-                        mapVar: AmCharts.maps.worldLow, 
-                        "areas": [
-                            {
-                            id: "GB",
-                            value: 7024,
-                            color: "#00570B",
-
-                            "title": "United Kingdom",
-                            "description": "17/136 Teasted ASes are spoofable:<br>43754 (ASIATECH)<br>41495 (FAELIX-AS)<br>8916 (PORTFAST)<br>15395<br>20860 (IOMART-AS)<br>202939 (b5dc)<br>35028 (MULTIPLAY)<br>786 (JANET)<br>8435<br>42004 (ULGRP-AS)<br>8468 (ENTANET)<br>8676 (PRTSYSTEMS)<br>31712 (GIGASTREAM-AS)<br>50056 (AI-NET)<br>13213 (UK2NET-AS)<br>61049 (AS-EXASCALE)<br>58188 (SHARPSTEAM)<br>",
-                            },
-                            {
-                                id: "NL",
-                                value: 3652,
-                                color: "#00570B",
-                                "title": "The Netherlands",
-                                "description": "18/132 ASes are spoofable:<br>29073 (QUASINETWORKS)<br>16281 (UTELISYS)<br>43090<br>206360<br>49544 (INTERACTIVE3D)<br>11232 (MIDCO-NET)<br>8283 (COLOCLUE-AS)<br>4608 (APNIC-SERVICES)<br>49981 (WorldStream)<br>60144 (THREE-W-INFRA-AS)<br>43350 (NFORCE)<br>200837 (PCEXTREME-UK)<br>48635 (PCEXTREME)<br>59743 (EliteHosting)<br>57062 (SERVERCLUB-AS)<br>31216 (BSOCOM)<br>60144 (THREE-W-INFRA-AS)<br>47869 (NETROUTING-AS)<br>"},
-                            {
-                                id: "DE",
-                                color: "#00570B",
-                                value: 5143,
-                                "title": "Germany",
-                                "description": "12/105 ASes are spoofable:<br><br>Preview not available"},
-                                {
-                                id: "IN",
-                                color: "#00570B",
-                                value: 4727,
-                                "title": "India",
-                                "description": "13/113 ASes are spoofable<br><br>Preview not available"},
-                                {
-                                id: "CA",
-                                value: 4470,
-                                color: "#00570B",
-                                "title": "Canada",
-                                "description": "25/115 ASes are spoofable:<br><br>Preview not available"},               
-                                {
-                                id: "AU",
-                                value: 3691,
-                                color: "#00570B",
-                                "title": "Australia",
-                                "description": "14/94 ASes are spoofable:<br><br>Preview not available"}             
-                        ],
+                
+                //load data map
+                map.dataLoader = {
+                        url: "{% static 'csv/map.json' %}",
+                        format: "json",
+                        //delimiter: ",",
+                        //useColumnNames: true,
                 };
+                
                 map.areasSettings = {
                     autoZoom: true,
                     descriptionWindowTop: 10,
@@ -84,38 +52,46 @@
                     rollOverColor:"#2EA93D",
                 };
                 map.projection = "eckert5";
+                
+                //when click on a country, show information
                 map.listeners = [ {
                             "event": "clickMapObject",
                             "method": function( event ) {
                                 
                                 if (event.mapObject.title=="United Kingdom")
                                 {
-                                document.getElementById("descriptionA").innerHTML = '<iframe src="http://gg93.pythonanywhere.com/previewUK" style="border:solid 2px; border-color: #00570B; border-radius: 10px; "</iframe>';
+                            /*    document.getElementById("descriptionA").innerHTML = '<iframe src="http://gg93.pythonanywhere.com/previewUK" style="border:solid 2px; border-color: #00570B; border-radius: 10px; "</iframe>';
                                 document.getElementById("descriptionB").innerHTML = '<a style="color: #159124; margin-left:310px;" href="http://gg93.pythonanywhere.com/UK"">Visit UK page</a>';
                             
 
-                            /*  document.getElementById("descriptionA").innerHTML = '<iframe src="http://127.0.0.1:8000/previewUK" style="border:solid 2px; border-color: #00570B; border-radius: 10px; "</iframe>';
+                            */  document.getElementById("descriptionA").innerHTML = '<iframe src="http://127.0.0.1:8000/previewUK" style="border:solid 2px; border-color: #00570B; border-radius: 10px; "</iframe>';
                                 document.getElementById("descriptionB").innerHTML = '<a style="color: #159124; margin-left:310px;" href="http://127.0.0.1:8000/UK"">Visit UK page</a>';
-                             */   
+
+                                $(function() {
+								$("#descriptionC").load("{%static 'columnSimple.html' %}"); 
+									});
+                                //document.getElementById("descriptionC").innerHTML =''  ;
+                               
                                 } 
 
                                 else if (event.mapObject.title=="The Netherlands")
                                 {
-                             document.getElementById("descriptionA").innerHTML = '<iframe src="http://gg93.pythonanywhere.com/previewNL" style="border:solid 2px; border-color: #00570B; border-radius: 10px; "</iframe>';
+                            /* document.getElementById("descriptionA").innerHTML = '<iframe src="http://gg93.pythonanywhere.com/previewNL" style="border:solid 2px; border-color: #00570B; border-radius: 10px; "</iframe>';
                               document.getElementById("descriptionB").innerHTML = '<a style="color: #159124; margin-left:310px;" href="#">Visit NL page</a>';
                             
                               
-                            /*  document.getElementById("descriptionA").innerHTML = '<iframe src="http://127.0.0.1:8000/previewNL" style="border:solid 2px; border-color: #00570B; border-radius: 10px; "</iframe>';
-                              document.getElementById("descriptionB").innerHTML = '<a style="color: #159124; margin-left:310px;" href="#">Visit NL page</a>';
-                            */  
+                            */  document.getElementById("descriptionA").innerHTML = '<iframe src="http://127.0.0.1:8000/previewNL" style="border:solid 2px; border-color: #00570B; border-radius: 10px; "</iframe>';
+                              document.getElementById("descriptionB").innerHTML = '<a style="color: #159124; margin-left:310px;" href="#">Visit NL page</a>';  
+                              $(function() {
+								$("#descriptionC").load("{% static 'tableNL.html' %}"); 
+									});
 
                                 } 
                             }
 
 
                         }  ],
-                map.dataProvider = dataProvider;
-                map.mouseWheelZoomEnabled= true;
+                map.mouseWheelZoomEnabled= false;
                 map.backgroundZoomsToTop= false;
                 
                 map.write("mapdiv"); 
@@ -190,9 +166,9 @@
                 chart.write("radar");
             });
         </script>
-<!-- CULUMN SCRIPT -->
+<!-- CULUMN SCRIPT  -->
         <script>
-        /* porcoddio sbarella con i nomi dei paesi */
+        /* sbarella con i nomi dei paesi */
         var chart;var chartData = [
                 {
                     "Country": "UK",
@@ -299,36 +275,19 @@
         <!-- NAVIGATION BAR -->
         <div class="menu-wrap">
             <nav class="menu">
-            
                 <ul class="clearfix">
-                    <li class="current-item"><a href="http://gg93.pythonanywhere.com/">Overview</a></li>
-                    <li><a href="http://gg93.pythonanywhere.com/UK">UK</a></li>
+                <li class="current-item"><a href="http://127.0.0.1:8000/">Overview</a></li>
+                    <li><a href="http://127.0.0.1:8000/UK">UK</a></li>
                     <li><a href="#">NL</a></li>
                     <li><a href="#">CA</a></li>
                     <li><a href="#">IN</a></li>
                     <li><a href="#">DE</a></li>
                     <li><a href="#">AU</a></li>
-                    <li><a href="http://gg93.pythonanywhere.com/about">About us</a></li>
+                    <li><a href="http://127.0.0.1:8000/about">About us</a></li>
                 </ul>
             </nav>
+                    
             
-            <!--
-            <ul class="clearfix">
-                    <li class="current-item">
-                        <a href="http://gg93.pythonanywhere.com/">Overview <span class="arrow">&#9660;</span></a>
-                        <ul class="sub-menu">
-                            <li><a href="http://gg93.pythonanywhere.com/UK">UK</a></li>
-                            <li><a href="#">Country2</a></li>
-                            <li><a href="#">Country3</a></li>
-                            <li><a href="#">Country4</a></li>
-                            <li><a href="#">Country5</a></li>
-                            <li><a href="#">Country6</a></li>
-                        </ul>
-                    </li>
-                    <li "><a href="http://gg93.pythonanywhere.com/about">About us</a></li>
-                </ul>
-            </nav>
-            -->
         </div>
 
         <!-- CONTENT -->
@@ -336,7 +295,6 @@
             <h1 align="center" style="margin-top: -15px;">Results overview</h1>
             <br>
             <p>This page provides an overview of the measurement of BCP38 compliance in six countries, namely UK, NL, DE, AU, IN, CA. For more information, click on the map below and visit the national page of each contry!</p>
-            <p style="color: red;">NOTE: map data retrived on the paper from Luckie and Claffy, details on the names of the vulnerable system from <a style="color: 159124;" href="https://spoofer.caida.org/country_stats.php">CAIDA's results</a>. There might be imprecisions and errors that I will fix as soon as we decide which country to consider for the experiment</p>
             
             <div id="mapdiv" style=" height: 350px; background-color:#f2f3f4; border:solid 2px; border-color: #00570B; border-radius: 10px; margin-top:30px;"></div>
         
@@ -347,18 +305,23 @@
                 </div>
             </div>
         </div>
-        <div id="mydiv" class = "content" style="margin-top: -70px;">
-            <div id="radar" style=" width:50%; height:50%; float: left; margin-top: 20px; ">
-            </div>
-            <div id="sx" style="margin-left: 0px;">
-                <br>
-                <br>
-                <h3>Test Distribution & Tested ASes</h3>
-                <p>This graphs shows the distribution of tests in the United Kingdom, the Netherlands, India, Australia, Canada and Germany. It includes both the total number of tests received (blue line) and the amount of Autonomous Systems covered (green line). </p>
-                <p>The highest number of tests has been collected in the UK (7024 tests) and Germany (5143 tets), followed by India and Canada with more the 4000 tests. In the Netherlands and Australia we collected around 3600 tests.</p>
-                <p>In United Kingdom and in the Netherlands we cover more then 130 Autonomous Systems. For the other countries, this number varies between the 94 ASes tested in Australia and the 115 in Canada</p>
+        <div id=external>
+            <div id="descriptionC" align="center" style="margin-top:-20px;">
             </div>
         </div>
+        
+        	<div id="mydiv" class = "content" style="margin-top: -40px;">
+                <div id="radar" style=" width:50%; height:50%; float: left; margin-top: 20px; ">
+                </div>
+                <div id="sx" style="margin-left: 0px;">
+                    <br>
+                    <br>
+                    <h3>Test Distribution & Tested ASes</h3>
+                    <p>This graphs shows the distribution of tests in the United Kingdom, the Netherlands, India, Australia, Canada and Germany. It includes both the total number of tests received (blue line) and the amount of Autonomous Systems covered (green line). </p>
+                    <p>The highest number of tests has been collected in the UK (7024 tests) and Germany (5143 tets), followed by India and Canada with more the 4000 tests. In the Netherlands and Australia we collected around 3600 tests.</p>
+                    <p>In United Kingdom and in the Netherlands we cover more then 130 Autonomous Systems. For the other countries, this number varies between the 94 ASes tested in Australia and the 115 in Canada</p>
+                </div>
+            </div>
         
         <div id="mydiv" class = "content" style="margin-top: -30px;">
             <div id="columnchart" style=" width:50%; height:50%; float: right; margin-top: 40px; "></div>
@@ -370,6 +333,6 @@
                     <p>As for the number of ASes compliant with BCP38, we find more then 100 in the UK, the Netherlands and India. Then, we identified 90 compliant ASes in Canada and Germany, while in Australia we measured 70.</p>
             </div>
         </div>
-
+        
     </body>
 </html>
