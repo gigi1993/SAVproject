@@ -47,6 +47,16 @@
                 map.listeners = [ {
                     "event": "clickMapObject",
                     "method": function( event ) {
+                        if (event.mapObject.title=="United Kingdom"){
+                            // load AS graph in description C
+                            document.getElementById("descriptionC").innerHTML = '<iframe src="http://gg93.pythonanywhere.com/details_AS_UK" width=100% height=50% frameborder="0"</iframe>';
+                            // load table in description B
+                            document.getElementById("descriptionB").innerHTML = '<iframe src="http://gg93.pythonanywhere.com/details_TAB_UK" width=100% height=50% frameborder="0"</iframe>';   
+                        } else if (event.mapObject.title=="Germany"){
+                            document.getElementById("descriptionC").innerHTML = '<iframe src="http://gg93.pythonanywhere.com/details_AS_DE" width=100% height=50% frameborder="0"</iframe>';
+                            document.getElementById("descriptionB").innerHTML = '<iframe src="http://gg93.pythonanywhere.com/details_TAB_DE" width=100% height=50% frameborder="0"</iframe>';
+                        }           
+                        /* FOR LOCAL DEBUG
                                  //if click UK
                         if (event.mapObject.title=="United Kingdom"){
                             // load AS graph in description C
@@ -56,7 +66,8 @@
                         } else if (event.mapObject.title=="Germany"){
                             document.getElementById("descriptionC").innerHTML = '<iframe src="http://127.0.0.1:8000/details_AS_DE" width=100% height=50% frameborder="0"</iframe>';
                             document.getElementById("descriptionB").innerHTML = '<iframe src="http://127.0.0.1:8000/details_TAB_DE" width=100% height=50% frameborder="0"</iframe>';
-                        }           
+                        } 
+                        */          
                     }
                 } ],
                 map.write("mapdiv"); 
@@ -153,8 +164,12 @@
         <div class="menu-wrap">
             <nav class="menu">
                 <ul class="clearfix">
+                <li class="current-item"><a href="http://gg93.pythonanywhere.com/">Overview</a></li>
+                <li><a href="http://gg93.pythonanywhere.com/about">About us</a></li>
+            <!-- LOCAL DEBUG
                 <li class="current-item"><a href="http://127.0.0.1:8000/">Overview</a></li>
-                    <li><a href="http://127.0.0.1:8000/about">About us</a></li>
+                <li><a href="http://127.0.0.1:8000/about">About us</a></li>
+            -->
                 </ul>
             </nav>
         </div>
