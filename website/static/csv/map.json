@@ -6,14 +6,14 @@
     "value": 7024,
     "color": "#00570B",
     "title": "United Kingdom",
-    "description": "17/136 Teasted ASes are spoofable:<br>43754 (ASIATECH)<br>41495 (FAELIX-AS)<br>8916 (PORTFAST)<br>15395<br>20860 (IOMART-AS)<br>202939 (b5dc)<br>35028 (MULTIPLAY)<br>786 (JANET)<br>8435<br>42004 (ULGRP-AS)<br>8468 (ENTANET)<br>8676 (PRTSYSTEMS)<br>31712 (GIGASTREAM-AS)<br>50056 (AI-NET)<br>13213 (UK2NET-AS)<br>61049 (AS-EXASCALE)<br>58188 (SHARPSTEAM)<br>"
+    "description": "Tested ASes: 106<br>20 present evidence of spoofing<br><br>Tested IP prefixes: 1255 <br>47 present evidence of spoofing<br> - 1184 IPv4 prefixes (38 spoofing)<br> - 69 IPv6 prefixes (9 spoofing)"
     },
     {
-    "id": "NL",
+    "id": "DE",
     "value": 3652,
     "color": "#00570B",
-    "title": "The Netherlands",
-    "description": "18/132 ASes are spoofable:<br>29073 (QUASINETWORKS)<br>16281 (UTELISYS)<br>43090<br>206360<br>49544 (INTERACTIVE3D)<br>11232 (MIDCO-NET)<br>8283 (COLOCLUE-AS)<br>4608 (APNIC-SERVICES)<br>49981 (WorldStream)<br>60144 (THREE-W-INFRA-AS)<br>43350 (NFORCE)<br>200837 (PCEXTREME-UK)<br>48635 (PCEXTREME)<br>59743 (EliteHosting)<br>57062 (SERVERCLUB-AS)<br>31216 (BSOCOM)<br>60144 (THREE-W-INFRA-AS)<br>47869 (NETROUTING-AS)<br>"
+    "title": "Germany",
+    "description": "Tested ASes: 55<br>8 present evidence of spoofing<br><br>Tested IP prefixes: 1173 <br>12 spoofing present evidence of spoofing<br> - 1084 IPv4 prefixes (6 spoofing)<br> - 89 IPv6 prefixes (6 spoofing)"
     }             
     ]
 }
