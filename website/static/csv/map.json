@@ -1,19 +1,22 @@
 {
     "map": "worldLow",
+    "zoomLevel": 3.5,
+    "zoomLatitude": 53,
+    "zoomLongitude": 10.347274,
     "areas": [
     {
     "id": "GB",
-    "value": 7024,
+    "value": 0,
     "color": "#00570B",
     "title": "United Kingdom",
-    "description": "Tested ASes: 106<br>20 present evidence of spoofing<br><br>Tested IP prefixes: 1255 <br>47 present evidence of spoofing<br> - 1184 IPv4 prefixes (38 spoofing)<br> - 69 IPv6 prefixes (9 spoofing)"
+    "description": "Tested ASes: 101<br>14 present evidence of spoofing<br><br>Tested IP prefixes: 1153 <br>38 present evidence of spoofing<br> - 1093 IPv4 prefixes (33 spoofing)<br> - 61 IPv6 prefixes (6 spoofing)"
     },
     {
     "id": "DE",
-    "value": 3652,
+    "value": 0,
     "color": "#00570B",
     "title": "Germany",
-    "description": "Tested ASes: 55<br>8 present evidence of spoofing<br><br>Tested IP prefixes: 1173 <br>12 spoofing present evidence of spoofing<br> - 1084 IPv4 prefixes (6 spoofing)<br> - 89 IPv6 prefixes (6 spoofing)"
+    "description": "Tested ASes: 59<br>8 present evidence of spoofing<br><br>Tested IP prefixes: 1140 <br>12 spoofing present evidence of spoofing<br> - 1062 IPv4 prefixes (6 spoofing)<br> - 78 IPv6 prefixes (6 spoofing)"
     }             
     ]
 }
